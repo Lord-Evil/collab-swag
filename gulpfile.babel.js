@@ -80,7 +80,8 @@ gulp.task('compile', gulp.series('copy', () => {
 	}
 
 	return bundler
-		.transform('babelify', { presets: ['@babel/preset-env', '@babel/preset-react'] })
+		.transform('babelify', { presets: ['@babel/preset-env', '@babel/preset-react']/*, plugins:['transform-import-css']*/ })
+		.transform('browserify-css', {global: true})
 		.bundle()
 		.on('error', gutil.log)
 		.pipe(source('app.js'))

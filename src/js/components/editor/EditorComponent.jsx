@@ -6,6 +6,7 @@ import $ from 'jquery';
 // import the theme and mode
 import { yaml } from 'brace/mode/yaml';
 import { tomorrow_night } from 'brace/theme/tomorrow_night';
+import "brace/theme/tomorrow_night_eighties"
 
 export default class EditorComponent extends React.Component {
 
@@ -93,13 +94,23 @@ export default class EditorComponent extends React.Component {
 				<AceEditor
 					ref="editor"
 					mode="yaml"
-					theme="tomorrow_night"
+					theme="tomorrow_night_eighties"
 					name="swagedit"
-					height={this.state.height + "px"}
-					width={this.state.width + "px"}
+					height="100%"
+					width="100%"
 					value={this.props.editorValue}
 					cursorStart={5}
-					tabSize={2}
+					tabSize={4}
+					fontSize={14}
+					useSoftTabs="true"
+					editorProps={{
+						"display_indent_guides": true,
+						folding: "markbeginandend"
+					}}
+					setOptions={{
+						cursorStyle: "smooth",
+						wrapBehavioursEnabled: true
+					}}
 					onLoad={this.editorLoaded.bind(this)}
 					onChange={this.handleChange.bind(this)} />
 			</div>
